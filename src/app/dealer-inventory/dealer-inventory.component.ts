@@ -17,7 +17,29 @@ export class DealerInventoryComponent implements OnInit {
    deleteVehicle(car:Vehicle) {
     this.inventory = this.inventory.filter(c => c.VIN != car.VIN)
    }
+
+
+   handlePhotoNavigation(photoIndex:number, car:Vehicle) {
+    if (photoIndex == car.photos.length - 1) {
+    alert("Come visit us in our showroom!")
+    }
+   }
    
+   addVehicle(v:Vehicle) {
+    this.inventory.push(v)
+   }
+   
+   vehicleToEdit?:Vehicle
+   beginEditing(v:Vehicle) {
+    this.vehicleToEdit = v
+   }
+   commitEdit(v:Vehicle) {
+    //Copy the edited data
+    Object.assign(this.vehicleToEdit, v)
+    this.vehicleToEdit = undefined
+   }
+   
+
   constructor() { }
 
   ngOnInit(): void {
